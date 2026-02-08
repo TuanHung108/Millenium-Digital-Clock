@@ -1,0 +1,510 @@
+Analysis & Synthesis report for Millennium_Clock_v2
+Fri Aug 22 21:12:26 2025
+Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. General Register Statistics
+  9. Inverted Register Statistics
+ 10. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 11. Parameter Settings for User Entity Instance: counter_control:counter|gen_clock:gen_clock_inst
+ 12. Port Connectivity Checks: "display_control:display|display_decoder:decoder|bin_to_bcd:second_converter"
+ 13. Port Connectivity Checks: "display_control:display|display_decoder:decoder|bin_to_bcd:minute_converter"
+ 14. Port Connectivity Checks: "display_control:display|display_decoder:decoder|bin_to_bcd:hour_converter"
+ 15. Port Connectivity Checks: "display_control:display|display_decoder:decoder|bin_to_bcd:day_converter"
+ 16. Port Connectivity Checks: "display_control:display|display_decoder:decoder|bin_to_bcd:month_converter"
+ 17. Port Connectivity Checks: "counter_control:counter|day_counter:day_counter_inst"
+ 18. Post-Synthesis Netlist Statistics for Top Partition
+ 19. Elapsed Time Per Partition
+ 20. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2025  Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Altera and sold by Altera or its authorized distributors.  Please
+refer to the Altera Software License Subscription Agreements 
+on the Quartus Prime software download page.
+
+
+
++--------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                         ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Fri Aug 22 21:12:26 2025           ;
+; Quartus Prime Version              ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
+; Revision Name                      ; Millennium_Clock_v2                             ;
+; Top-level Entity Name              ; top_control                                     ;
+; Family                             ; Cyclone IV E                                    ;
+; Total logic elements               ; 667                                             ;
+;     Total combinational functions  ; 663                                             ;
+;     Dedicated logic registers      ; 155                                             ;
+; Total registers                    ; 155                                             ;
+; Total pins                         ; 65                                              ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 0                                               ;
+; Embedded Multiplier 9-bit elements ; 0                                               ;
+; Total PLLs                         ; 0                                               ;
++------------------------------------+-------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                               ;
++------------------------------------------------------------------+--------------------+---------------------+
+; Option                                                           ; Setting            ; Default Value       ;
++------------------------------------------------------------------+--------------------+---------------------+
+; Device                                                           ; EP4CE115F29C7      ;                     ;
+; Top-level entity name                                            ; top_control        ; Millennium_Clock_v2 ;
+; Family name                                                      ; Cyclone IV E       ; Cyclone V           ;
+; Use smart compilation                                            ; Off                ; Off                 ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                  ;
+; Enable compact report table                                      ; Off                ; Off                 ;
+; Restructure Multiplexers                                         ; Auto               ; Auto                ;
+; Create Debugging Nodes for IP Cores                              ; Off                ; Off                 ;
+; Preserve fewer node names                                        ; On                 ; On                  ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable             ; Enable              ;
+; Verilog Version                                                  ; Verilog_2001       ; Verilog_2001        ;
+; VHDL Version                                                     ; VHDL_1993          ; VHDL_1993           ;
+; State Machine Processing                                         ; Auto               ; Auto                ;
+; Safe State Machine                                               ; Off                ; Off                 ;
+; Extract Verilog State Machines                                   ; On                 ; On                  ;
+; Extract VHDL State Machines                                      ; On                 ; On                  ;
+; Ignore Verilog initial constructs                                ; Off                ; Off                 ;
+; Iteration limit for constant Verilog loops                       ; 5000               ; 5000                ;
+; Iteration limit for non-constant Verilog loops                   ; 250                ; 250                 ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                 ; On                  ;
+; Infer RAMs from Raw Logic                                        ; On                 ; On                  ;
+; Parallel Synthesis                                               ; On                 ; On                  ;
+; DSP Block Balancing                                              ; Auto               ; Auto                ;
+; NOT Gate Push-Back                                               ; On                 ; On                  ;
+; Power-Up Don't Care                                              ; On                 ; On                  ;
+; Remove Redundant Logic Cells                                     ; Off                ; Off                 ;
+; Remove Duplicate Registers                                       ; On                 ; On                  ;
+; Ignore CARRY Buffers                                             ; Off                ; Off                 ;
+; Ignore CASCADE Buffers                                           ; Off                ; Off                 ;
+; Ignore GLOBAL Buffers                                            ; Off                ; Off                 ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                ; Off                 ;
+; Ignore LCELL Buffers                                             ; Off                ; Off                 ;
+; Ignore SOFT Buffers                                              ; On                 ; On                  ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                ; Off                 ;
+; Optimization Technique                                           ; Balanced           ; Balanced            ;
+; Carry Chain Length                                               ; 70                 ; 70                  ;
+; Auto Carry Chains                                                ; On                 ; On                  ;
+; Auto Open-Drain Pins                                             ; On                 ; On                  ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                ; Off                 ;
+; Auto ROM Replacement                                             ; On                 ; On                  ;
+; Auto RAM Replacement                                             ; On                 ; On                  ;
+; Auto DSP Block Replacement                                       ; On                 ; On                  ;
+; Auto Shift Register Replacement                                  ; Auto               ; Auto                ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto               ; Auto                ;
+; Auto Clock Enable Replacement                                    ; On                 ; On                  ;
+; Strict RAM Replacement                                           ; Off                ; Off                 ;
+; Allow Synchronous Control Signals                                ; On                 ; On                  ;
+; Force Use of Synchronous Clear Signals                           ; Off                ; Off                 ;
+; Auto RAM Block Balancing                                         ; On                 ; On                  ;
+; Auto RAM to Logic Cell Conversion                                ; Off                ; Off                 ;
+; Auto Resource Sharing                                            ; Off                ; Off                 ;
+; Allow Any RAM Size For Recognition                               ; Off                ; Off                 ;
+; Allow Any ROM Size For Recognition                               ; Off                ; Off                 ;
+; Allow Any Shift Register Size For Recognition                    ; Off                ; Off                 ;
+; Use LogicLock Constraints during Resource Balancing              ; On                 ; On                  ;
+; Ignore translate_off and synthesis_off directives                ; Off                ; Off                 ;
+; Timing-Driven Synthesis                                          ; On                 ; On                  ;
+; Report Parameter Settings                                        ; On                 ; On                  ;
+; Report Source Assignments                                        ; On                 ; On                  ;
+; Report Connectivity Checks                                       ; On                 ; On                  ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                ; Off                 ;
+; Synchronization Register Chain Length                            ; 2                  ; 2                   ;
+; Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation  ;
+; HDL message level                                                ; Level2             ; Level2              ;
+; Suppress Register Optimization Related Messages                  ; Off                ; Off                 ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000               ; 5000                ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000               ; 5000                ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                ; 100                 ;
+; Clock MUX Protection                                             ; On                 ; On                  ;
+; Auto Gated Clock Conversion                                      ; Off                ; Off                 ;
+; Block Design Naming                                              ; Auto               ; Auto                ;
+; SDC constraint protection                                        ; Off                ; Off                 ;
+; Synthesis Effort                                                 ; Auto               ; Auto                ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                 ; On                  ;
+; Pre-Mapping Resynthesis Optimization                             ; Off                ; Off                 ;
+; Analysis & Synthesis Message Level                               ; Medium             ; Medium              ;
+; Disable Register Merging Across Hierarchies                      ; Auto               ; Auto                ;
+; Resource Aware Inference For Block RAM                           ; On                 ; On                  ;
++------------------------------------------------------------------+--------------------+---------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 20          ;
+; Maximum allowed            ; 14          ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 14          ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-14        ;   0.0%      ;
++----------------------------+-------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                             ;
++----------------------------------+-----------------+------------------------+------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                               ; Library ;
++----------------------------------+-----------------+------------------------+------------------------------------------------------------+---------+
+; top_control.v                    ; yes             ; User Verilog HDL File  ; C:/QuestaSim_Project/Millennium_Clock_v2/top_control.v     ;         ;
+; year_counter.v                   ; yes             ; User Verilog HDL File  ; C:/QuestaSim_Project/Millennium_Clock_v2/year_counter.v    ;         ;
+; seg_decoder.v                    ; yes             ; User Verilog HDL File  ; C:/QuestaSim_Project/Millennium_Clock_v2/seg_decoder.v     ;         ;
+; second_counter.v                 ; yes             ; User Verilog HDL File  ; C:/QuestaSim_Project/Millennium_Clock_v2/second_counter.v  ;         ;
+; month_counter.v                  ; yes             ; User Verilog HDL File  ; C:/QuestaSim_Project/Millennium_Clock_v2/month_counter.v   ;         ;
+; minute_counter.v                 ; yes             ; User Verilog HDL File  ; C:/QuestaSim_Project/Millennium_Clock_v2/minute_counter.v  ;         ;
+; hour_counter.v                   ; yes             ; User Verilog HDL File  ; C:/QuestaSim_Project/Millennium_Clock_v2/hour_counter.v    ;         ;
+; gen_clock.v                      ; yes             ; User Verilog HDL File  ; C:/QuestaSim_Project/Millennium_Clock_v2/gen_clock.v       ;         ;
+; display_decoder.v                ; yes             ; User Verilog HDL File  ; C:/QuestaSim_Project/Millennium_Clock_v2/display_decoder.v ;         ;
+; display_control.v                ; yes             ; User Verilog HDL File  ; C:/QuestaSim_Project/Millennium_Clock_v2/display_control.v ;         ;
+; display_blink.v                  ; yes             ; User Verilog HDL File  ; C:/QuestaSim_Project/Millennium_Clock_v2/display_blink.v   ;         ;
+; debounce_button.v                ; yes             ; User Verilog HDL File  ; C:/QuestaSim_Project/Millennium_Clock_v2/debounce_button.v ;         ;
+; day_counter.v                    ; yes             ; User Verilog HDL File  ; C:/QuestaSim_Project/Millennium_Clock_v2/day_counter.v     ;         ;
+; counter_control.v                ; yes             ; User Verilog HDL File  ; C:/QuestaSim_Project/Millennium_Clock_v2/counter_control.v ;         ;
+; bin_to_bcd.v                     ; yes             ; User Verilog HDL File  ; C:/QuestaSim_Project/Millennium_Clock_v2/bin_to_bcd.v      ;         ;
++----------------------------------+-----------------+------------------------+------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimated Total logic elements              ; 667       ;
+;                                             ;           ;
+; Total combinational functions               ; 663       ;
+; Logic element usage by number of LUT inputs ;           ;
+;     -- 4 input functions                    ; 368       ;
+;     -- 3 input functions                    ; 95        ;
+;     -- <=2 input functions                  ; 200       ;
+;                                             ;           ;
+; Logic elements by mode                      ;           ;
+;     -- normal mode                          ; 502       ;
+;     -- arithmetic mode                      ; 161       ;
+;                                             ;           ;
+; Total registers                             ; 155       ;
+;     -- Dedicated logic registers            ; 155       ;
+;     -- I/O registers                        ; 0         ;
+;                                             ;           ;
+; I/O pins                                    ; 65        ;
+;                                             ;           ;
+; Embedded Multiplier 9-bit elements          ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 155       ;
+; Total fan-out                               ; 2836      ;
+; Average fan-out                             ; 2.99      ;
++---------------------------------------------+-----------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                  ;
++--------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------+-----------------+--------------+
+; Compilation Hierarchy Node                 ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                         ; Entity Name     ; Library Name ;
++--------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------+-----------------+--------------+
+; |top_control                               ; 663 (1)             ; 155 (0)                   ; 0           ; 0            ; 0       ; 0         ; 65   ; 0            ; |top_control                                                                                ; top_control     ; work         ;
+;    |counter_control:counter|               ; 258 (22)            ; 80 (0)                    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|counter_control:counter                                                        ; counter_control ; work         ;
+;       |day_counter:day_counter_inst|       ; 34 (34)             ; 7 (7)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|counter_control:counter|day_counter:day_counter_inst                           ; day_counter     ; work         ;
+;       |gen_clock:gen_clock_inst|           ; 56 (56)             ; 33 (33)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|counter_control:counter|gen_clock:gen_clock_inst                               ; gen_clock       ; work         ;
+;       |hour_counter:hour_counter_inst|     ; 27 (27)             ; 7 (7)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|counter_control:counter|hour_counter:hour_counter_inst                         ; hour_counter    ; work         ;
+;       |minute_counter:minute_counter_inst| ; 25 (25)             ; 7 (7)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|counter_control:counter|minute_counter:minute_counter_inst                     ; minute_counter  ; work         ;
+;       |month_counter:month_counter_inst|   ; 13 (13)             ; 5 (5)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|counter_control:counter|month_counter:month_counter_inst                       ; month_counter   ; work         ;
+;       |second_counter:sec_counter_inst|    ; 25 (25)             ; 7 (7)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|counter_control:counter|second_counter:sec_counter_inst                        ; second_counter  ; work         ;
+;       |year_counter:year_counter_inst|     ; 56 (56)             ; 14 (14)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|counter_control:counter|year_counter:year_counter_inst                         ; year_counter    ; work         ;
+;    |debounce_button:db_down|               ; 25 (25)             ; 21 (21)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|debounce_button:db_down                                                        ; debounce_button ; work         ;
+;    |debounce_button:db_up|                 ; 25 (25)             ; 21 (21)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|debounce_button:db_up                                                          ; debounce_button ; work         ;
+;    |display_control:display|               ; 354 (0)             ; 33 (0)                    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|display_control:display                                                        ; display_control ; work         ;
+;       |display_blink:blink|                ; 150 (150)           ; 33 (33)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|display_control:display|display_blink:blink                                    ; display_blink   ; work         ;
+;       |display_decoder:decoder|            ; 204 (4)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|display_control:display|display_decoder:decoder                                ; display_decoder ; work         ;
+;          |bin_to_bcd:day_converter|        ; 9 (9)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|display_control:display|display_decoder:decoder|bin_to_bcd:day_converter       ; bin_to_bcd      ; work         ;
+;          |bin_to_bcd:hour_converter|       ; 9 (9)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|display_control:display|display_decoder:decoder|bin_to_bcd:hour_converter      ; bin_to_bcd      ; work         ;
+;          |bin_to_bcd:minute_converter|     ; 9 (9)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|display_control:display|display_decoder:decoder|bin_to_bcd:minute_converter    ; bin_to_bcd      ; work         ;
+;          |bin_to_bcd:second_converter|     ; 9 (9)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|display_control:display|display_decoder:decoder|bin_to_bcd:second_converter    ; bin_to_bcd      ; work         ;
+;          |bin_to_bcd:year_converter|       ; 105 (105)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|display_control:display|display_decoder:decoder|bin_to_bcd:year_converter      ; bin_to_bcd      ; work         ;
+;          |seg_decoder:seg_day_ones|        ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|display_control:display|display_decoder:decoder|seg_decoder:seg_day_ones       ; seg_decoder     ; work         ;
+;          |seg_decoder:seg_hour_ones|       ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|display_control:display|display_decoder:decoder|seg_decoder:seg_hour_ones      ; seg_decoder     ; work         ;
+;          |seg_decoder:seg_min_ones|        ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|display_control:display|display_decoder:decoder|seg_decoder:seg_min_ones       ; seg_decoder     ; work         ;
+;          |seg_decoder:seg_month_ones|      ; 3 (3)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|display_control:display|display_decoder:decoder|seg_decoder:seg_month_ones     ; seg_decoder     ; work         ;
+;          |seg_decoder:seg_sec_ones|        ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|display_control:display|display_decoder:decoder|seg_decoder:seg_sec_ones       ; seg_decoder     ; work         ;
+;          |seg_decoder:seg_year_hundreds|   ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|display_control:display|display_decoder:decoder|seg_decoder:seg_year_hundreds  ; seg_decoder     ; work         ;
+;          |seg_decoder:seg_year_ones|       ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|display_control:display|display_decoder:decoder|seg_decoder:seg_year_ones      ; seg_decoder     ; work         ;
+;          |seg_decoder:seg_year_tens|       ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|display_control:display|display_decoder:decoder|seg_decoder:seg_year_tens      ; seg_decoder     ; work         ;
+;          |seg_decoder:seg_year_thousands|  ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_control|display_control:display|display_decoder:decoder|seg_decoder:seg_year_thousands ; seg_decoder     ; work         ;
++--------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------+-----------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 155   ;
+; Number of registers using Synchronous Clear  ; 32    ;
+; Number of registers using Synchronous Load   ; 3     ;
+; Number of registers using Asynchronous Clear ; 155   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 73    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-----------------------------------------------------------------------------+
+; Inverted Register Statistics                                                ;
++-------------------------------------------------------------------+---------+
+; Inverted Register                                                 ; Fan out ;
++-------------------------------------------------------------------+---------+
+; counter_control:counter|day_counter:day_counter_inst|day[0]       ; 11      ;
+; counter_control:counter|month_counter:month_counter_inst|month[0] ; 14      ;
+; counter_control:counter|year_counter:year_counter_inst|year[10]   ; 12      ;
+; counter_control:counter|year_counter:year_counter_inst|year[9]    ; 14      ;
+; counter_control:counter|year_counter:year_counter_inst|year[8]    ; 11      ;
+; counter_control:counter|year_counter:year_counter_inst|year[7]    ; 14      ;
+; counter_control:counter|year_counter:year_counter_inst|year[6]    ; 13      ;
+; counter_control:counter|year_counter:year_counter_inst|year[5]    ; 14      ;
+; counter_control:counter|year_counter:year_counter_inst|year[3]    ; 10      ;
+; counter_control:counter|year_counter:year_counter_inst|year[0]    ; 11      ;
+; Total number of inverted registers = 10                           ;         ;
++-------------------------------------------------------------------+---------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------+
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top_control|debounce_button:db_down|cnt[6]                                       ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top_control|debounce_button:db_up|cnt[10]                                        ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 6 LEs                ; 3 LEs                  ; Yes        ; |top_control|counter_control:counter|month_counter:month_counter_inst|month[2]    ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |top_control|counter_control:counter|day_counter:day_counter_inst|day[5]          ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |top_control|counter_control:counter|hour_counter:hour_counter_inst|hour[2]       ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |top_control|counter_control:counter|minute_counter:minute_counter_inst|minute[0] ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |top_control|counter_control:counter|year_counter:year_counter_inst|year[13]      ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |top_control|counter_control:counter|second_counter:sec_counter_inst|second[1]    ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top_control|counter_control:counter|year_counter:year_counter_inst|year[10]      ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |top_control|counter_control:counter|down_month                                   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |top_control|display_control:display|display_blink:blink|seg_blinked[53]          ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |top_control|display_control:display|display_blink:blink|seg_blinked[32]          ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |top_control|display_control:display|display_blink:blink|seg_blinked[20]          ;
+; 4:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; No         ; |top_control|display_control:display|display_blink:blink|seg_blinked[11]          ;
+; 10:1               ; 4 bits    ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |top_control|display_control:display|display_blink:blink|seg_blinked[41]          ;
+; 10:1               ; 6 bits    ; 36 LEs        ; 36 LEs               ; 0 LEs                  ; No         ; |top_control|display_control:display|display_blink:blink|seg_blinked[26]          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: counter_control:counter|gen_clock:gen_clock_inst ;
++----------------+----------+-------------------------------------------------------------------+
+; Parameter Name ; Value    ; Type                                                              ;
++----------------+----------+-------------------------------------------------------------------+
+; clk_frg        ; 50000000 ; Signed Integer                                                    ;
++----------------+----------+-------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "display_control:display|display_decoder:decoder|bin_to_bcd:second_converter"                                                                          ;
++-----------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                                                                                          ;
++-----------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+; bin_in    ; Input  ; Warning  ; Input port expression (6 bits) is smaller than the input port (14 bits) it drives.  Extra input bit(s) "bin_in[13..6]" will be connected to GND. ;
+; thousands ; Output ; Info     ; Explicitly unconnected                                                                                                                           ;
+; hundreds  ; Output ; Info     ; Explicitly unconnected                                                                                                                           ;
++-----------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "display_control:display|display_decoder:decoder|bin_to_bcd:minute_converter"                                                                          ;
++-----------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                                                                                          ;
++-----------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+; bin_in    ; Input  ; Warning  ; Input port expression (6 bits) is smaller than the input port (14 bits) it drives.  Extra input bit(s) "bin_in[13..6]" will be connected to GND. ;
+; thousands ; Output ; Info     ; Explicitly unconnected                                                                                                                           ;
+; hundreds  ; Output ; Info     ; Explicitly unconnected                                                                                                                           ;
++-----------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "display_control:display|display_decoder:decoder|bin_to_bcd:hour_converter"                                                                            ;
++-----------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                                                                                          ;
++-----------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+; bin_in    ; Input  ; Warning  ; Input port expression (6 bits) is smaller than the input port (14 bits) it drives.  Extra input bit(s) "bin_in[13..6]" will be connected to GND. ;
+; thousands ; Output ; Info     ; Explicitly unconnected                                                                                                                           ;
+; hundreds  ; Output ; Info     ; Explicitly unconnected                                                                                                                           ;
++-----------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "display_control:display|display_decoder:decoder|bin_to_bcd:day_converter"                                                                             ;
++-----------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                                                                                          ;
++-----------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+; bin_in    ; Input  ; Warning  ; Input port expression (6 bits) is smaller than the input port (14 bits) it drives.  Extra input bit(s) "bin_in[13..6]" will be connected to GND. ;
+; thousands ; Output ; Info     ; Explicitly unconnected                                                                                                                           ;
+; hundreds  ; Output ; Info     ; Explicitly unconnected                                                                                                                           ;
++-----------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "display_control:display|display_decoder:decoder|bin_to_bcd:month_converter"                                                                           ;
++-----------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                                                                                          ;
++-----------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+; bin_in    ; Input  ; Warning  ; Input port expression (4 bits) is smaller than the input port (14 bits) it drives.  Extra input bit(s) "bin_in[13..4]" will be connected to GND. ;
+; thousands ; Output ; Info     ; Explicitly unconnected                                                                                                                           ;
+; hundreds  ; Output ; Info     ; Explicitly unconnected                                                                                                                           ;
++-----------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------+
+; Port Connectivity Checks: "counter_control:counter|day_counter:day_counter_inst" ;
++---------------+-------+----------+-----------------------------------------------+
+; Port          ; Type  ; Severity ; Details                                       ;
++---------------+-------+----------+-----------------------------------------------+
+; max_day[4..2] ; Input ; Info     ; Stuck at VCC                                  ;
+; max_day[5]    ; Input ; Info     ; Stuck at GND                                  ;
++---------------+-------+----------+-----------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 65                          ;
+; cycloneiii_ff         ; 155                         ;
+;     CLR               ; 50                          ;
+;     CLR SCLR          ; 32                          ;
+;     ENA CLR           ; 70                          ;
+;     ENA CLR SLD       ; 3                           ;
+; cycloneiii_lcell_comb ; 663                         ;
+;     arith             ; 161                         ;
+;         2 data inputs ; 159                         ;
+;         3 data inputs ; 2                           ;
+;     normal            ; 502                         ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 16                          ;
+;         2 data inputs ; 24                          ;
+;         3 data inputs ; 93                          ;
+;         4 data inputs ; 368                         ;
+;                       ;                             ;
+; Max LUT depth         ; 14.00                       ;
+; Average LUT depth     ; 5.08                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:09     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+    Info: Processing started: Fri Aug 22 21:12:08 2025
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Millennium_Clock_v2 -c Millennium_Clock_v2
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 14 of the 14 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file top_control.v
+    Info (12023): Found entity 1: top_control File: C:/QuestaSim_Project/Millennium_Clock_v2/top_control.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file year_counter.v
+    Info (12023): Found entity 1: year_counter File: C:/QuestaSim_Project/Millennium_Clock_v2/year_counter.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file seg_decoder.v
+    Info (12023): Found entity 1: seg_decoder File: C:/QuestaSim_Project/Millennium_Clock_v2/seg_decoder.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file second_counter.v
+    Info (12023): Found entity 1: second_counter File: C:/QuestaSim_Project/Millennium_Clock_v2/second_counter.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file month_counter.v
+    Info (12023): Found entity 1: month_counter File: C:/QuestaSim_Project/Millennium_Clock_v2/month_counter.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file minute_counter.v
+    Info (12023): Found entity 1: minute_counter File: C:/QuestaSim_Project/Millennium_Clock_v2/minute_counter.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file hour_counter.v
+    Info (12023): Found entity 1: hour_counter File: C:/QuestaSim_Project/Millennium_Clock_v2/hour_counter.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file gen_clock.v
+    Info (12023): Found entity 1: gen_clock File: C:/QuestaSim_Project/Millennium_Clock_v2/gen_clock.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file display_decoder.v
+    Info (12023): Found entity 1: display_decoder File: C:/QuestaSim_Project/Millennium_Clock_v2/display_decoder.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file display_control.v
+    Info (12023): Found entity 1: display_control File: C:/QuestaSim_Project/Millennium_Clock_v2/display_control.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file display_blink.v
+    Info (12023): Found entity 1: display_blink File: C:/QuestaSim_Project/Millennium_Clock_v2/display_blink.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file debounce_button.v
+    Info (12023): Found entity 1: debounce_button File: C:/QuestaSim_Project/Millennium_Clock_v2/debounce_button.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file day_counter.v
+    Info (12023): Found entity 1: day_counter File: C:/QuestaSim_Project/Millennium_Clock_v2/day_counter.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file counter_control.v
+    Info (12023): Found entity 1: counter_control File: C:/QuestaSim_Project/Millennium_Clock_v2/counter_control.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file bin_to_bcd.v
+    Info (12023): Found entity 1: bin_to_bcd File: C:/QuestaSim_Project/Millennium_Clock_v2/bin_to_bcd.v Line: 1
+Info (12127): Elaborating entity "top_control" for the top level hierarchy
+Info (12128): Elaborating entity "debounce_button" for hierarchy "debounce_button:db_up" File: C:/QuestaSim_Project/Millennium_Clock_v2/top_control.v Line: 26
+Warning (10230): Verilog HDL assignment warning at debounce_button.v(33): truncated value with size 32 to match size of target (16) File: C:/QuestaSim_Project/Millennium_Clock_v2/debounce_button.v Line: 33
+Info (12128): Elaborating entity "counter_control" for hierarchy "counter_control:counter" File: C:/QuestaSim_Project/Millennium_Clock_v2/top_control.v Line: 54
+Warning (10230): Verilog HDL assignment warning at counter_control.v(44): truncated value with size 32 to match size of target (6) File: C:/QuestaSim_Project/Millennium_Clock_v2/counter_control.v Line: 44
+Warning (10235): Verilog HDL Always Construct warning at counter_control.v(63): variable "mode_time" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/QuestaSim_Project/Millennium_Clock_v2/counter_control.v Line: 63
+Info (12128): Elaborating entity "gen_clock" for hierarchy "counter_control:counter|gen_clock:gen_clock_inst" File: C:/QuestaSim_Project/Millennium_Clock_v2/counter_control.v Line: 19
+Info (12128): Elaborating entity "second_counter" for hierarchy "counter_control:counter|second_counter:sec_counter_inst" File: C:/QuestaSim_Project/Millennium_Clock_v2/counter_control.v Line: 111
+Info (12128): Elaborating entity "minute_counter" for hierarchy "counter_control:counter|minute_counter:minute_counter_inst" File: C:/QuestaSim_Project/Millennium_Clock_v2/counter_control.v Line: 122
+Info (12128): Elaborating entity "hour_counter" for hierarchy "counter_control:counter|hour_counter:hour_counter_inst" File: C:/QuestaSim_Project/Millennium_Clock_v2/counter_control.v Line: 133
+Info (12128): Elaborating entity "day_counter" for hierarchy "counter_control:counter|day_counter:day_counter_inst" File: C:/QuestaSim_Project/Millennium_Clock_v2/counter_control.v Line: 145
+Info (12128): Elaborating entity "month_counter" for hierarchy "counter_control:counter|month_counter:month_counter_inst" File: C:/QuestaSim_Project/Millennium_Clock_v2/counter_control.v Line: 156
+Info (12128): Elaborating entity "year_counter" for hierarchy "counter_control:counter|year_counter:year_counter_inst" File: C:/QuestaSim_Project/Millennium_Clock_v2/counter_control.v Line: 166
+Info (12128): Elaborating entity "display_control" for hierarchy "display_control:display" File: C:/QuestaSim_Project/Millennium_Clock_v2/top_control.v Line: 75
+Info (12128): Elaborating entity "display_decoder" for hierarchy "display_control:display|display_decoder:decoder" File: C:/QuestaSim_Project/Millennium_Clock_v2/display_control.v Line: 27
+Info (12128): Elaborating entity "bin_to_bcd" for hierarchy "display_control:display|display_decoder:decoder|bin_to_bcd:year_converter" File: C:/QuestaSim_Project/Millennium_Clock_v2/display_decoder.v Line: 25
+Info (12128): Elaborating entity "seg_decoder" for hierarchy "display_control:display|display_decoder:decoder|seg_decoder:seg_year_thousands" File: C:/QuestaSim_Project/Millennium_Clock_v2/display_decoder.v Line: 79
+Info (12128): Elaborating entity "display_blink" for hierarchy "display_control:display|display_blink:blink" File: C:/QuestaSim_Project/Millennium_Clock_v2/display_control.v Line: 38
+Warning (12241): 5 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (13000): Registers with preset signals will power-up high File: C:/QuestaSim_Project/Millennium_Clock_v2/day_counter.v Line: 16
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 732 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 9 input pins
+    Info (21059): Implemented 56 output pins
+    Info (21061): Implemented 667 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 5 warnings
+    Info: Peak virtual memory: 4872 megabytes
+    Info: Processing ended: Fri Aug 22 21:12:26 2025
+    Info: Elapsed time: 00:00:18
+    Info: Total CPU time (on all processors): 00:00:31
+
+
