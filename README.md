@@ -1,0 +1,66 @@
+**Project Overview**
+- **Name**: Millennium_Clock_v2 — FPGA-based digital clock and calendar.
+- **Purpose**: Hiển thị giờ, phút, giây và ngày/tháng/năm trên 7-segment; có chế độ thời gian/thiết lập thủ công với nút lên/xuống và lựa chọn mục cần set.
+
+**Repository Contents**
+- **Quartus project files**: Millennium_Clock_v2.qpf, Millennium_Clock_v2.qsf, incremental_db/, db/ (pin và dữ liệu biên dịch).
+- **Top/module sources**: See file list below for main Verilog sources.
+
+**Key Source Files**
+- **Top-level**: [top_control.v](top_control.v) — kết nối giao diện người dùng, debouncer, bộ đếm và điều khiển hiển thị.
+- **Counter & timing**: [counter_control.v](counter_control.v), [gen_clock.v](gen_clock.v), [second_counter.v](second_counter.v), [minute_counter.v](minute_counter.v), [hour_counter.v](hour_counter.v), [day_counter.v](day_counter.v), [month_counter.v](month_counter.v), [year_counter.v](year_counter.v).
+- **Display**: [display_control.v](display_control.v), [display_blink.v](display_blink.v), [display_decoder.v](display_decoder.v), [seg_decoder.v](seg_decoder.v), [bin_to_bcd.v](bin_to_bcd.v).
+- **Utilities**: [debounce_button.v](debounce_button.v).
+
+**High-level Architecture & Dataflow**
+- **Clock generation**: `gen_clock` sinh tín hiệu xung cho giây (`signal_sec`) và chuỗi tín hiệu đẩy sang phút/giờ/ngày.
+- **Counters**: Các block `*_counter` (second/minute/hour/day/month/year) nhận tín hiệu chuỗi (`signal_in`) và xuất `signal_out` cho cấp tiếp theo khi tràn.
+- **Manual set**: `counter_control` cho phép thiết lập thủ công bằng cách bật `manual_set` cùng với `select_item` (3-bit) để chọn second/minute/hour/day/month/year; nút `up`/`down` (được debounce) điều chỉnh giá trị tương ứng.
+- **Hiển thị**: `display_control` thu giá trị thời gian/ngày và điều khiển các anode/cathode 7-seg (HEX0..HEX7) thông qua `seg_decoder` và logic nhấp nháy (`display_blink`).
+
+**Important Signals & Interfaces**
+- **Inputs (top_control.v)**: `clk`, `btn_rst_n`, `btn_up`, `btn_down`, `sw_mode` (chế độ time/set), `sw_start_manual` (bắt đầu set), `sw_select_item[2:0]` (chọn mục set).
+- **Outputs (top_control.v)**: `HEX0`..`HEX7` — 7-segment displays.
+- **Widths**: `second/minute/hour/day` are 6-bit, `month` is 4-bit, `year` is 14-bit (the project uses 14 bits for year storage).
+
+**Leap Year & max_day logic (analysis)**
+- `counter_control.v` tính `leap_year` bằng cách kiểm tra `year[1:0] == 2'b00` (chia hết cho 4) rồi dùng một `case` để loại trừ một số năm thế kỷ cụ thể (ví dụ 2100, 2200, ...). Sau đó `max_day` cho tháng 2 là 29 nếu leap, ngược lại 28.
+- **Ghi chú**: Cách triển khai này hoạt động cho phần lớn năm, nhưng xử lý năm thế kỷ là cứng mã hóa một số giá trị (thay vì dùng quy tắc chia hết cho 400). Nếu cần chính xác lâu dài, nên áp dụng luật chuẩn: năm chia hết cho 400 là leap; chia hết cho 100 nhưng không chia hết cho 400 thì không leap.
+
+**Build / Run / Simulate**
+- **Synth & FPGA**: Mở `Millennium_Clock_v2.qpf` trong Intel Quartus, phân tích và compile project, rồi nạp lên board tương ứng. File pin/partition có trong `db/` (ví dụ các JSON/cnf trong thư mục `db`).
+- **Simulation**: Dự án chứa thư mục `simulation/`. Để mô phỏng với ModelSim/QuestaSim, thêm các file sources vào workspace mô phỏng, biên dịch (vcom/vlog) rồi chạy `vsim` cho module top (`top_control` hoặc testbench nếu có). Ví dụ (tùy môi trường):
+```
+quartus_sh --flow compile Millennium_Clock_v2
+vlib work
+vlog *.v
+vsim work.top_control
+run -all
+```
+Điều chỉnh lệnh tuỳ theo testbench và tập tin mô phỏng bạn có.
+
+**How to manually set time/date (user-facing)**
+- **Chế độ**: chuyển `sw_mode` để chọn giữa hiển thị thời gian hoặc chế độ thiết lập.
+- **Bắt đầu thiết lập**: kéo `sw_start_manual` (manual_set) để bật chế độ set.
+- **Chọn mục**: `sw_select_item` (3-bit): mỗi mã chọn second/minute/hour/day/month/year theo logic trong `counter_control.v`.
+- **Điều chỉnh**: dùng `btn_up` / `btn_down` (đã debounce) để tăng/giảm mục đang chọn.
+
+**Potential Enhancements / Notes**
+- Tối ưu hóa leap-year: thay `case` liệt kê bằng thuật toán chia cho 100/400 để đảm bảo đúng lâu dài.
+- Thêm testbench đầy đủ (nếu chưa có) để kiểm thử các boundary (31/30 ngày, leap year, end-of-year rollover).
+- Nếu muốn hỗ trợ múi giờ/RTC/EEPROM lưu trữ thời gian sau power-cycle, có thể thêm giao diện I2C/SPI tới module RTC.
+
+**Where to look in code**
+- Main top and UI glue: [top_control.v](top_control.v)
+- Counter & control logic: [counter_control.v](counter_control.v)
+- Clock generator: [gen_clock.v](gen_clock.v)
+- 7-seg driver / decoder: [seg_decoder.v](seg_decoder.v), [display_control.v](display_control.v)
+- Debouncing: [debounce_button.v](debounce_button.v)
+
+If you want, I can:
+- Generate a pin assignment summary from `db/Millennium_Clock_v2_partition_pins.json`.
+- Add/extend a simulation testbench to exercise edge cases (leap day, month rollover).
+- Convert leap-year logic to a canonical algorithm and patch it in `counter_control.v`.
+
+---
+Generated by assistant: analysis based on source files in this workspace. If you want the README extended (English version, detailed pin mapping, or patched leap-year logic), tell me which next step to take.
